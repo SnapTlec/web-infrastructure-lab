@@ -21,7 +21,7 @@
 | Estimativa  | 3–4 dias                       |
 | Assignee    | @seu-usuario                   |
 | Repositório | `web-infrastructure-lab`       |
-| Status      | Operational                    |
+| Status      | 	In Progress                    |
 
 ---
 
