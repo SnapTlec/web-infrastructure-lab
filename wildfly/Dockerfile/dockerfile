@@ -1,0 +1,13 @@
+FROM archlinux:latest
+
+RUN pacman -Sy --noconfirm && \
+    mkdir -p /tmp/java && \
+    curl https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.tar.gz -o /tmp/java/jdk-17.0.12_linux-x64_bin.tar.gz && \
+    mkdir -p /opt/java/jdk17 && \
+    tar ----strip-components=1 -xzf /tmp/java/jdk-17.0.12_linux-x64_bin.tar.gz -C /opt/java/jdk17 && \
+    mkdir -p /tmp/wildfly && \
+    curl -L https://github.com/wildfly/wildfly/releases/download/40.0.0.Final/wildfly-40.0.0.Final.tar.gz -o /tmp/wildfly/wildfly-40.0.0.Final.tar.gz && \
+    mkdir -p /etc/wildfly && \
+    tar --strip-components=1 -xzf /tmp/wildfly/wildfly-40.0.0.Final.tar.gz -C /etc/wildfly
+
+
