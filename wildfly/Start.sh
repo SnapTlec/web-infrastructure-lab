@@ -1,8 +1,26 @@
 #!/bin/bash
 
 echo "Iniciando Wildfly"
+echo "ROLE=${ROLE}"
 
-export JAVA_HOME=/opt/java/jdk17
-export PATH=$JAVA_HOME/bin:$PATH
+if [ "ROLE"= "controller" ]; then
+    echo "Inicializando a instância controller"
 
-exec /etc/wildfly/bin/domain.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+    exec /opt/wildfly/bin/domain.sh \
+            -b 0.0.0.0 \ 
+            -bmanagement 0.0.0.0 \
+            --host-config=host-master.xml
+
+elif [ "ROLE" = "slave" ]; then
+
+    echo "Inicializando a instância slave"
+
+    exec /opt/wildfly/bin/domain.sh \
+            -b 0.0.0.0 \ 
+            -bmanagement 0.0.0.0 \
+            --host-config=host-slave.xml
+else
+    echo "ROLE inválida"
+
+    exit 1
+fi
