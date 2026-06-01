@@ -1,0 +1,37 @@
+services:
+  host-master:
+    image: minimal-web-db:latest
+    hostname: host-master
+    container_name: host-master
+    restart: always
+    ports:
+      - 9090:9990
+      - 7070:8080
+    environment:
+      HOST_CONFIG: host.xml
+      
+      MGMT_USER: administrator
+      MGMT_PASSWD: admin
+    volumes:
+      - wildfly_controller:/etc/wildfly
+
+  host-slave01:
+    image: minimal-web-db:latest
+    container_name: host-slave01
+    hostname: host-slave01
+    restart: always
+    ports:
+      - 9091:9990
+      - 7071:8080
+    environment:
+      HOST_CONFIG: host-slave.xml
+      DOMAIN_CONTROLLER: minimal-web-db-host-controller
+      
+      MGMT_USER: administrator
+      MGMT_PASSWD: admin
+    volumes:
+      - wildfly_slave01:/etc/wildfly
+
+volumes:
+  wildfly_controller:
+  wildfly_slave01:
