@@ -34,7 +34,7 @@
         </management-interfaces>
     </management>
     <domain-controller>
-        <remote protocol="remote+http" host="localhost" port="9990"/>
+        <remote protocol="http-remoting" host="host-master" port="9990" username="administrator" authentication-context="hcAuthContext"/>
     </domain-controller>
     <interfaces>
         <interface name="management">
@@ -66,6 +66,17 @@
     <profile>
         <subsystem xmlns="urn:jboss:domain:core-management:1.0"/>
         <subsystem xmlns="urn:wildfly:elytron:19.0" final-providers="combined-providers" disallowed-providers="OracleUcrypto" register-jaspi-factory="false">
+            <authentication-client>
+                <authentication-configuration sasl-mechanism-selector="DIGEST-MD5"
+                                            name="hostAuthConfig"
+                                            authentication-name="administrator"
+                                            realm="ManagementRealm">
+                    <credential-reference clear-text="admin"/>
+                </authentication-configuration>
+                <authentication-context name="hcAuthContext">
+                    <match-rule authentication-configuration="hostAuthConfig"/>
+                </authentication-context>
+            </authentication-client>
             <providers>
                 <aggregate-providers name="combined-providers">
                     <providers name="elytron"/>

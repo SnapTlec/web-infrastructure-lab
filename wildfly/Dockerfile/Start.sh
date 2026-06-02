@@ -3,7 +3,7 @@
 echo "Iniciando Wildfly"
 
 
-if ! grep -q "${MGMT_USER}" teste.txt; then
+if ! grep -q "${MGMT_USER}" /opt/jboss/wildfly/domain/configuration/mgmt-users.properties; then
 
     exec /opt/jboss/wildfly/bin/add-user.sh \
         -u "${MGMT_USER}" \

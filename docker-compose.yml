@@ -1,6 +1,6 @@
 services:
   host-master:
-    image: minimal-web-db:latest
+    image: demo:latest
     hostname: host-master
     container_name: host-master
     restart: always
@@ -16,7 +16,7 @@ services:
       - wildfly_controller:/etc/wildfly
 
   host-slave01:
-    image: minimal-web-db:latest
+    image: demo:latest
     container_name: host-slave01
     hostname: host-slave01
     restart: always
@@ -25,7 +25,7 @@ services:
       - 7071:8080
     environment:
       HOST_CONFIG: host-slave.xml
-      DOMAIN_CONTROLLER: minimal-web-db-host-controller
+      DOMAIN_CONTROLLER: host-master
       
       MGMT_USER: administrator
       MGMT_PASSWD: admin

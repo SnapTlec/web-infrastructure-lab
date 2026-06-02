@@ -1,6 +1,6 @@
 FROM quay.io/wildfly/wildfly
 
-COPY start-wildfly.sh /opt/start-wildfly.sh
+COPY Start.sh /opt/start-wildfly.sh
 COPY domain.xml /opt/jboss/wildfly/domain/configuration/domain.xml
 COPY host.xml /opt/jboss/wildfly/domain/configuration/host.xml
 COPY host-slave.xml /opt/jboss/wildfly/domain/configuration/host-slave.xml
