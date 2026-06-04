@@ -32,12 +32,12 @@ Responsável por otimizar o uso das conexões com o banco de dados, evitando a a
 
 A configuração deve estabelecer critérios relacionados a:
 
-- [ ] Quantidade mínima de conexões mantidas disponíveis.
+- [x] Quantidade mínima de conexões mantidas disponíveis.
 - [x] Quantidade máxima de conexões simultâneas.
-- [ ] Estratégias de crescimento e redução do pool.
-- [ ] Controle de tempo ocioso das conexões.
-- [ ] Reutilização de conexões existentes.
-- [ ] Tratamento de conexões inválidas ou expiradas.
+- [x] Estratégias de crescimento e redução do pool.
+- [x] Controle de tempo ocioso das conexões.
+- [x] Reutilização de conexões existentes.
+- [x] Tratamento de conexões inválidas ou expiradas.
 
 Essa etapa visa melhorar desempenho, escalabilidade e estabilidade operacional do ambiente.
 
@@ -48,10 +48,10 @@ Ao final do provisionamento, o script deve executar verificações que confirmem
 
 As validações devem garantir que:
 
-- [ ] O driver JDBC está disponível e carregado.
-- [ ] O datasource foi criado corretamente.
-- [ ] O datasource encontra-se habilitado.
-- [ ] O servidor consegue estabelecer comunicação com o banco de dados.
-- [ ] Não existem erros de autenticação, rede ou configuração.
+- [x] O driver JDBC está disponível e carregado.
+- [x] O datasource foi criado corretamente.
+- [x] O datasource encontra-se habilitado.
+- [x] O servidor consegue estabelecer comunicação com o banco de dados.
+- [x] Não existem erros de autenticação, rede ou configuração.
 
 Essa etapa deve servir como critério de sucesso do provisionamento, permitindo identificar problemas imediatamente após a execução.
