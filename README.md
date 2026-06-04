@@ -171,7 +171,7 @@ web-infrastructure-lab/
 - [x] Escrever `haproxy.cfg` com frontend HTTP/HTTPS, backend com dois servidores NGINX, health check ativo e stats page
 - [ ] Gerar certificado SSL autoassinado e configurar nos dois nós NGINX
 - [ ] Configurar `nginx.conf` com virtual host, upstream para WildFly e headers de proxy corretos
-- [ ] Criar script de provisionamento WildFly via `jboss-cli.sh`: módulo JDBC, datasource, connection pool e teste de conectividade
+- [x] Criar script de provisionamento WildFly via `jboss-cli.sh`: módulo JDBC, datasource, connection pool e teste de conectividade
 - [ ] Escrever script SQL de inicialização do SQL Server: banco, usuário, tabela de exemplo e dados seed
 - [ ] Montar `docker-compose.yml` com redes internas (`frontend-net`, `backend-net`, `db-net`), volumes nomeados e dependências
 - [ ] Criar script `healthcheck.sh` que valide todas as camadas e retorne status consolidado
@@ -182,7 +182,7 @@ web-infrastructure-lab/
 
 ## Critérios de aceite
 
-- [] Ambiente sobe completamente com `docker-compose up -d` sem erros manuais
+- [ ] Ambiente sobe completamente com `docker-compose up -d` sem erros manuais
 - [ ] HAProxy distribui requisições entre os dois nós NGINX e detecta falha em menos de 10s
 - [ ] NGINX redireciona corretamente para WildFly com headers de proxy preservados
 - [ ] Aplicação Java EE responde com HTTP 200 e lê dados do SQL Server via datasource
