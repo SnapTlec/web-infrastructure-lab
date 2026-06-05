@@ -1,47 +1,76 @@
 services:
   load-balance:
-    image:
-    hostname: SVLHML0001
-    container_name: loadbalance
+    image: haproxy:trixie
+    hostname: SVLLAB0001
+    container_name: load-balance
     restart: always
     ports:
-      80:80
-      443:443
+      - 80:80
+      - 443:443
+      - 8084:8084
     volumes:
-      loadbalance:/etc/haproxy
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - proxy-reverse
+      - host-master
+      - host-slave01
+
+    networks:
+      - web-infrastructure-lab_default
+
+  proxy-reverse:
+    image: nginx:mainline-alpine3.23-perl
+    hostname: SVLLAB0002
+    container_name: proxy-reverse
+    restart: always
+    ports:
+      - 4040:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - web-infrastructure-lab_default
+    depends_on:
+      - host-master
+      - host-slave01
+
   host-master:
     image: demo:latest
-    hostname: host-master
+    hostname: SVLLAB0003
     container_name: host-master
     restart: always
     ports:
-      - 9090:9990
-      - 7070:8080
+      - 5050:8080
+      - 3030:9990
     environment:
       HOST_CONFIG: host.xml
-      
       MGMT_USER: administrator
       MGMT_PASSWD: admin
     volumes:
       - wildfly_controller:/etc/wildfly
+    networks:
+      - web-infrastructure-lab_default
 
   host-slave01:
     image: demo:latest
     container_name: host-slave01
-    hostname: host-slave01
+    hostname: SVLLAB0004
     restart: always
-    ports:
-      - 9091:9990
-      - 7071:8080
+    depends_on:
+      - host-master
     environment:
       HOST_CONFIG: host-slave.xml
       DOMAIN_CONTROLLER: host-master
-      
       MGMT_USER: administrator
       MGMT_PASSWD: admin
     volumes:
       - wildfly_slave01:/etc/wildfly
+    networks:
+      - web-infrastructure-lab_default
 
 volumes:
   wildfly_controller:
   wildfly_slave01:
+
+networks:
+  web-infrastructure-lab_default:
+    external: true
