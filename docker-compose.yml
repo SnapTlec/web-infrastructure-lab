@@ -10,7 +10,7 @@ services:
       - 8084:8084
     volumes:
       - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
-      - ./haproxy/certs/haproxy.pem:/etc/haproxy/certs/haproxy.pem
+      - ./haproxy/certs/haproxy.pem:/usr/local/etc/haproxy/haproxy.pem
     depends_on:
       - proxy-reverse-host-master
       - proxy-reverse-host-slave01

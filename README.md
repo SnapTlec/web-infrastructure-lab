@@ -169,7 +169,7 @@ web-infrastructure-lab/
 
 - [x] Criar estrutura de diretórios do repositório
 - [x] Escrever `haproxy.cfg` com frontend HTTP/HTTPS, backend com dois servidores NGINX, health check ativo e stats page
-- [ ] Gerar certificado SSL autoassinado e configurar nos dois nós NGINX
+- [x] Gerar certificado SSL autoassinado e configurar nos dois nós NGINX
 - [x] Configurar `nginx.conf` com virtual host, upstream para WildFly e headers de proxy corretos
 - [x] Criar script de provisionamento WildFly via `jboss-cli.sh`: módulo JDBC, datasource, connection pool e teste de conectividade
 - [ ] Escrever script SQL de inicialização do SQL Server: banco, usuário, tabela de exemplo e dados seed
